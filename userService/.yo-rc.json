@@ -1,0 +1,35 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.filefirmware.project"
+    },
+    "jhipsterVersion": "6.1.2",
+    "applicationType": "microservice",
+    "baseName": "userservice",
+    "packageName": "com.filefirmware.project",
+    "packageFolder": "com/filefirmware/project",
+    "serverPort": "8081",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ODJmZDYzNjk4OGM0ODA1M2EzMjNlNDNjYjNjMzE4NDg2MTgzNjI5NDE3YzU2ZGM0NDNmNTAwNTZiODljZDJmOTA2ZGE1ZDE1NjRhODBkYjNlOTJkMzVkYmE2OWExODI2MDNhYzFlOTFkOTNkOTllYTFlYTdjZGQ0ODVkZjc0ZTE=",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}
