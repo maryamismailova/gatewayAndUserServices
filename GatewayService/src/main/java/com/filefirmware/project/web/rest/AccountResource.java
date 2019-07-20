@@ -76,7 +76,7 @@ public class AccountResource {
         User user = userService.registerUser(managedUserVM, managedUserVM.getPassword());
 //        mailService.sendActivationEmail(user);
 
-        ResponseEntity<UserDetailsDTO> userDet=userDetailsFeignClient.registerUserDetails(managedUserVM);
+        userDetailsFeignClient.registerUserDetails(managedUserVM);
 
     }
 

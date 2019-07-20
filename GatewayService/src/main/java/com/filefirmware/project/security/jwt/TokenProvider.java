@@ -81,6 +81,13 @@ public class TokenProvider implements InitializingBean {
             .compact();
     }
 
+    public String createToken(String uuid){
+        return Jwts.builder()
+            .setSubject(uuid)
+            .signWith(key, SignatureAlgorithm.HS512)
+            .compact();
+    }
+
     public Authentication getAuthentication(String token) {
         Claims claims = Jwts.parser()
             .setSigningKey(key)

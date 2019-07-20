@@ -11,6 +11,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * Service Implementation for managing {@link UserDetailsDTO}.
@@ -74,5 +75,18 @@ public class UserDetailsDTOServiceImpl implements UserDetailsDTOService {
     public void delete(Long id) {
         log.debug("Request to delete UserDetailsDTO : {}", id);
         userDetailsDTORepository.deleteById(id);
+    }
+
+    @Override
+    public CompletableFuture<String> getName()throws Exception {
+
+        Thread.sleep(1000);
+        return CompletableFuture.completedFuture("Hello");
+    }
+
+    @Override
+    public CompletableFuture<String> getSurname() throws Exception{
+        Thread.sleep(900);
+        return CompletableFuture.completedFuture("World!");
     }
 }

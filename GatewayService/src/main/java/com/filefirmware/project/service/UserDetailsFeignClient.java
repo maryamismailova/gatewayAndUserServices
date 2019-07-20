@@ -7,9 +7,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import javax.xml.ws.Response;
 
-@FeignClient(name="userdetails")
+@FeignClient(name="userDetails")
 public interface UserDetailsFeignClient {
 
     @PostMapping("/api/saveUserDetails")
-    public ResponseEntity<UserDetailsDTO> registerUserDetails(UserDetailsDTO userDetailsDTO);
+    public boolean registerUserDetails(UserDetailsDTO userDetailsDTO);
 }

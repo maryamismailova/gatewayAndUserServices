@@ -117,10 +117,9 @@ public class UuidHolderResource {
     }
 
     @GetMapping("/exists/{uuid}")
-    public ResponseEntity<Boolean> existsByUuid(@PathVariable String uuid){
+    public boolean existsByUuid(@PathVariable String uuid){
         log.debug("REST request to find if uuid exists");
-        boolean exists=uuidHolderService.exists(uuid);
-        if (exists)return new ResponseEntity<>(true, HttpStatus.FOUND);
-        else return new ResponseEntity<>(false, HttpStatus.NOT_FOUND);
+        return uuidHolderService.exists(uuid);
+
     }
 }

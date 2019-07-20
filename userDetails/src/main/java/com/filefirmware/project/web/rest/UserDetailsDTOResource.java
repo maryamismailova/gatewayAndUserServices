@@ -17,6 +17,7 @@ import java.net.URISyntaxException;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 
 /**
  * REST controller for managing {@link com.filefirmware.project.domain.UserDetailsDTO}.
@@ -45,16 +46,17 @@ public class UserDetailsDTOResource {
      * @return the {@link ResponseEntity} with status {@code 201 (Created)} and with body the new userDetailsDTO, or with status {@code 400 (Bad Request)} if the userDetailsDTO has already an ID.
      * @throws URISyntaxException if the Location URI syntax is incorrect.
      */
-    @PostMapping("/saveUserDetailss")
-    public ResponseEntity<UserDetailsDTO> createUserDetailsDTO(@RequestBody UserDetailsDTO userDetailsDTO) throws URISyntaxException {
+    @PostMapping("/saveUserDetails")
+    public boolean createUserDetailsDTO(@RequestBody UserDetailsDTO userDetailsDTO) throws URISyntaxException {
         log.debug("REST request to save UserDetailsDTO : {}", userDetailsDTO);
         if (userDetailsDTO.getId() != null) {
             throw new BadRequestAlertException("A new userDetailsDTO cannot already have an ID", ENTITY_NAME, "idexists");
         }
         UserDetailsDTO result = userDetailsDTOService.save(userDetailsDTO);
-        return ResponseEntity.created(new URI("/api/user-details-dtos/" + result.getId()))
-            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
-            .body(result);
+//        return ResponseEntity.created(new URI("/api/user-details-dtos/" + result.getId()))
+//            .headers(HeaderUtil.createEntityCreationAlert(applicationName, false, ENTITY_NAME, result.getId().toString()))
+//            .body(result);
+        return (result==null)? false:true;
     }
 
     /**
@@ -114,4 +116,15 @@ public class UserDetailsDTOResource {
         userDetailsDTOService.delete(id);
         return ResponseEntity.noContent().headers(HeaderUtil.createEntityDeletionAlert(applicationName, false, ENTITY_NAME, id.toString())).build();
     }
+
+    @GetMapping("/getAsyncString")
+    public String getAsyncString() throws Exception {
+
+        CompletableFuture<String> name=userDetailsDTOService.getName();
+        CompletableFuture<String> surname=userDetailsDTOService.getSurname();
+        CompletableFuture.allOf(name, surname).join();
+        String expression=name.get()+" "+surname.get();
+        return expression;
+    }
+
 }

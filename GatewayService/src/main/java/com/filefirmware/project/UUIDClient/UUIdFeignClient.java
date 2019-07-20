@@ -12,6 +12,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 public interface UUIdFeignClient {
 
     @GetMapping("/api/exists/{uuid}")
-    ResponseEntity<Boolean> findUser(@PathVariable(value="uuid")  String uuid);
+    boolean findUser(@PathVariable(value="uuid")  String uuid);
 
 }
